@@ -1,8 +1,8 @@
 import tensorflow as tf
 import keras as kf
 
-
-hello = tf.constant('hello world from tf')
-sess = tf.Session()
-print(sess.run(hello))
+from keras.utils import np_utils   # for run
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense
 

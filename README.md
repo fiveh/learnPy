@@ -1,3 +1,3 @@
 # learnPy
 repository for education 
-![alt text](example.com/logo.png)
+![alt text](http://brandmark.io/logo-rank/random/beats.png)

@@ -1,2 +1,3 @@
 # learnPy
-repository for education 
+repository for education machine learning
+

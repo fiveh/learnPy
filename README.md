@@ -1,3 +1,3 @@
 # learnPy
 repository for education 
-![alt text](http://brandmark.io/logo-rank/random/beats.png)
+![alt text](https://github.com/fiveh/learnPy/raw/master/images/min%205h%20logo.jpg)

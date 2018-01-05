@@ -54,6 +54,7 @@ model.add(Dense(10, activation='softmax'))
 # compile network
 model.compile(loss='categorical_crossentropy', optimizer='SGD', metrics=['accuracy'])
 
+# need to try run 25 epochs for good result
 # train network
 model.fit(X_train, Y_train, batch_size=32, epochs=5, validation_split=0.1, shuffle=True)
 

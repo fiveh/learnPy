@@ -4,6 +4,7 @@ import numpy
 from keras.datasets import boston_housing
 from keras.models import Sequential
 from keras.layers import Dense
+from keras.models import model_from_json
 
 # for repeat results
 numpy.random.seed(42)
@@ -27,7 +28,7 @@ model.add(Dense(1))
 
 model.compile(optimizer='adam', loss='mse', metrics=['mae'])
 
-model.fit(x_train, y_train, epochs=10, batch_size=1, verbose=1)
+model.fit(x_train, y_train, epochs=100, batch_size=1, verbose=1)
 
 mse, mae = model.evaluate(x_test, y_test, verbose=0)
 print(mae)

@@ -41,16 +41,16 @@ print("ПЕРВЫЙ Точность работы на тестовых данн
 model_json = model.to_json()
 
 # save struct of network to file
-json_file = open("mnist_model.json", "w")
+json_file = open("../data/saves/mnist_model.json", "w")
 json_file.write(model_json)
 json_file.close()
 
 # save weight
-model.save_weights("mnist_model.h5")
+model.save_weights("../data/saves/mnist_model.h5")
 
 
 # open struct of network to file
-json_file = open("mnist_model.json", "r")
+json_file = open("../data/saves/mnist_model.json", "r")
 loaded_model_json = json_file.read()
 json_file.close()
 
@@ -60,7 +60,7 @@ json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 
 # load weight
-loaded_model.load_weights("mnist_model.h5")
+loaded_model.load_weights("../data/saves/mnist_model.h5")
 loaded_model.compile(loss="categorical_crossentropy", optimizer="SGD", metrics=["accuracy"])
 
 print(loaded_model.summary())

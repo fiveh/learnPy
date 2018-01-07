@@ -56,7 +56,18 @@ model.compile(loss='categorical_crossentropy', optimizer='SGD', metrics=['accura
 
 # need to try run 25 epochs for good result
 # train network
-model.fit(X_train, Y_train, batch_size=32, epochs=5, validation_split=0.1, shuffle=True)
+model.fit(X_train, Y_train, batch_size=32, epochs=30, validation_split=0.1, shuffle=True)
+
+# save model
+model_json = model.to_json()
+
+# save struct of network to file
+json_file = open("../data/saves/cifar10_model.json", "w")
+json_file.write(model_json)
+json_file.close()
+
+# save weight
+model.save_weights("../data/saves/cifar10_weights.h5")
 
 # check how correct our train on 'tests data'
 scores = model.evaluate(X_test, Y_test, verbose=0)

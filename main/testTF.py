@@ -5,4 +5,6 @@ from keras.utils import np_utils   # for run
 from keras.datasets import mnist
 from keras.models import Sequential
 from keras.layers import Dense
+from theano import tensor
 
+print("hello")

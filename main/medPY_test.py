@@ -19,8 +19,6 @@ def showingGif(path):
         cv2.imshow("tile", np.uint8(nptile))
         cv2.waitKey(10)
 
-
-
 showingGif(path)
 showingGif(path1)
 showingGif(path2)

@@ -48,9 +48,10 @@ def save_image(path, name_for_file):
         print("frame ", i)
         tile = sitk.Tile(img[:, :, i])
         nptile = sitk.GetArrayFromImage(tile)
-        # filename = str(i) + name_for_file + ".jpg"  # save all files
-        filename = str(i) + ".jpg"  # reWrite files
+        filename = name_for_file + str(i) + ".jpg"  # save all files
+        # filename = str(i) + ".jpg"  # reWrite files
         path_to_folder = "../data/med_images/output_image/" + filename
+        # plt.imsave(path_to_folder, nptile, cmap=plt.cm.gray)  # for gray image save
         plt.imsave(path_to_folder, nptile)
 
 
@@ -79,8 +80,10 @@ if __name__ == "__main__":
 
     # path0 = "../data/med_images/input_image/BRATS2015/training/HGG/brats_2013_pat0001_1/VSD.Brain_3more.XX.O.OT.54517.mha"
     # path1 = "../data/med_images/input_image/BRATS2015/training/HGG/brats_2013_pat0001_1/VSD.Brain.XX.O.MR_Flair.54512.mha"
+    #
     # showing_gif(path0)
-    # save_image(path0)
+    # save_image(path0, "name1")
     # showing_gif(path1)
-    # save_image(path1)
+    # save_image(path1, "name2")
+
 

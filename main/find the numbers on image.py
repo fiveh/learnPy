@@ -15,7 +15,7 @@ loaded_model.load_weights("../data/saves/mnist_model_for_img.h5")
 
 loaded_model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
 
-img_path = "../data/images/3.png"
+img_path = "../data/images/1.png"
 img = image.load_img(img_path, target_size=(28, 28), grayscale=True)
 plt.imshow(img, cmap='gray')
 plt.show()

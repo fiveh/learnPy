@@ -21,7 +21,7 @@ loaded_model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=
 classes = ['самолет', 'автомобиль', 'птица', 'кот', 'олень', 'собака', 'лягушка', 'лошадь', 'корабль', 'грузовик']
 
 # load image
-img_path = "../data/images/bird2.jpg"
+img_path = "../data/images/p4.jpg"
 img = image.load_img(img_path, target_size=(32, 32))
 plt.imshow(img)
 plt.show()

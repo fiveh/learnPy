@@ -1,6 +1,3 @@
-# TODO: try to run data on Keras CNN
-# TODO: take the more important data from 155 set
-
 import os
 
 import SimpleITK as sitk
@@ -131,8 +128,8 @@ if __name__ == "__main__":
     # save_image(T2, "name4")
     # save_image(OT, "name5")
 
-    # open_all_files("../data/med_images/input_image/BRATS2015/training/")
+    open_all_files("../data/med_images/input_image/BRATS2015/training/")
 
 
-    rename_all_files("../data/med_images/output_image/hggs", 'hgg')
+    # rename_all_files("../data/med_images/output_image/hggs", 'hgg')
     # rename_all_files("../data/med_images/output_image/lggs", 'lgg')

@@ -7,8 +7,8 @@ from PIL import Image
 import numpy as np
 import time
 
-out_size = 16
-path = 'C:/Users/hunter/Downloads/st/'
+out_size = 32
+path = 'C:/Users/hunter/Downloads/1k/'
 
 path_one = 'C:/Users/hunter/Downloads/search/'
 path_to_save = 'C:/Users/hunter/Downloads/saving/'
@@ -37,12 +37,19 @@ def convert_to_bin(arr):
     return arr
 
 def convert_to_hex(arr):  # input bin array
+
+    # print(arr)
+
     out = ''
-    for l in arr:
-        zero_one = map(int, l)  # convert True to 1, False to 0  using `int`
-        n = int(''.join(map(str, zero_one)), 2)  # numbers to strings, join them
+    for i in arr:
+        for j in range(len(arr) // 8):
+            # print(i[8*j: 8*j+8: 1])
+
+            zero_one = map(int, i[8*j: 8*j+8: 1])  # convert True to 1, False to 0  using `int`
+            # print(zero_one)
+            n = int(''.join(map(str, zero_one)), 2)  # numbers to strings, join them
         # convert to number (base 2)
-        out += ('{:02x}'.format(n))  # format them as hex string using `str.format`
+            out += ('{:02x}'.format(n))  # format them as hex string using `str.format`
 
     return out
 
@@ -59,19 +66,11 @@ def dct(out_size):
     return (arr)
 
 def hemming_length(image, collection):
-    # print(collection)
     message = 'NO FIND'
+    count_mathces = 0
 
     size_image = len(image[0])
-    size_image_in_col = len(collection[0])
     count_in_collection = len(collection)
-
-    print('im', size_image)
-    print('i in col ', size_image_in_col)
-    print('collection', count_in_collection)
-
-    print(image[0])
-    print(collection[0])
 
     for i in range(count_in_collection):
         count_diff = 0
@@ -80,11 +79,14 @@ def hemming_length(image, collection):
                 count_diff += 1
 
         acc = (100/len(image[0]))*count_diff
-        if (acc < 30):
+        if (acc < 5):
             message = 'Yes'
             print('difference: ', acc, '%')
             print(image,'find on iteration', i)
-    print(message)
+
+            count_mathces += 1
+            # print(count_mathces)
+    print(message, count_mathces)
 
 def gen_collection(path, out_size):
     myhashes = []
@@ -111,14 +113,9 @@ def gen_collection(path, out_size):
         result_dct = dct_matrix * th1 * dct_t_matrix
         bin_matrix = convert_to_bin(result_dct)
 
-        # print(len(bin_matrix), '\t', image)
-
-
         # bin_matrix = convert_to_bin(th1)
 
         result = convert_to_hex(bin_matrix)
-
-        print(len(result), '\t', image)
 
         myhashes.append(result)
 
@@ -135,10 +132,9 @@ if __name__ == '__main__':
     all_files = gen_collection(path, out_size)
     one_file = gen_collection(path_one, out_size)
 
-    start = time.time()
+    start_time = time.time()
 
     hemming_length(one_file, all_files)
 
-
-    print("Potracheno time: {:.3f} sec".format(time.time()-start))
+    print("Potracheno time: {:.3f} sec".format(time.time()-start_time))
 

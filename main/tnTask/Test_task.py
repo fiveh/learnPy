@@ -5,7 +5,7 @@ import time
 import cv2
 import numpy as np
 
-out_size = 32
+out_size = 16
 path = 'C:/Users/hunter/Downloads/1k/'
 
 path_one = 'C:/Users/hunter/Downloads/search/'

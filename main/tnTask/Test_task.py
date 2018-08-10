@@ -22,8 +22,10 @@ def show_image(name, image):
     cv2.waitKey(500)
     cv2.destroyAllWindows()
 
+
 def save_image(path_to_save, name, image):
     cv2.imwrite(path_to_save + 'new.' + name, image)  # saving image to current
+
 
 def convert_to_bin(arr):
     for i in range(out_size):
@@ -34,6 +36,7 @@ def convert_to_bin(arr):
                 arr[i][j] = False
     return arr
 
+
 def convert_to_hex(arr):  # input bin array
 
     # print(arr)
@@ -43,13 +46,23 @@ def convert_to_hex(arr):  # input bin array
         for j in range(len(arr) // 8):
             # print(i[8*j: 8*j+8: 1])
 
-            zero_one = map(int, i[8*j: 8*j+8: 1])  # convert True to 1, False to 0  using `int`
+            zero_one = map(int, i[8 * j: 8 * j + 8: 1])  # convert True to 1, False to 0  using `int`
             # print(zero_one)
             n = int(''.join(map(str, zero_one)), 2)  # numbers to strings, join them
-        # convert to number (base 2)
+            # convert to number (base 2)
             out += ('{:02x}'.format(n))  # format them as hex string using `str.format`
 
     return out
+
+
+def convert_to_hex_v2(img):
+    diff = img[:, 1:] > img[:, :-1]
+
+    hex_result = sum([2 ** i for (i, v) in enumerate(diff.flatten()) if v])
+    hex_result = '{:02x}'.format(hex_result)
+
+    return hex_result
+
 
 def dct(out_size):
     arr = []
@@ -63,37 +76,14 @@ def dct(out_size):
 
     return (arr)
 
+
 def hemming_length(image, collection):
-    message = 'NO FIND'
-    count_mathces = 0
-
-    size_image = len(image[0])
-    count_in_collection = len(collection)
-
-    for i in range(count_in_collection):
-        count_diff = 0
-        for j in range(size_image):
-            if (image[0][j] != collection[i][j]):
-                count_diff += 1
-
-        acc = (100/len(image[0]))*count_diff
-        if (acc < 5):
-            message = 'Yes'
-            print('difference: ', acc, '%')
-            print(image,'find on iteration', i)
-
-            count_mathces += 1
-
-    print(message, count_mathces, 'on: ', i)
-
-
-def hemming_length2(image, collection):
+    global i
     message = 'NO FIND'
     count_mathces = 0
 
     count_in_collection = len(collection)
     size_image = len(image[0])
-
 
     for i in range(count_in_collection):
         if (len(collection[i]) == size_image):
@@ -111,17 +101,7 @@ def hemming_length2(image, collection):
                 print('difference: ', acc, '%')
                 print('find on iteration', i, image)
 
-
     print(message, count_mathces, 'on: ', i)
-
-
-def convert_to_hex_v2(img):
-    diff = img[:, 1:] > img[:, :-1]
-
-    integro = sum([2 ** i for (i, v) in enumerate(diff.flatten()) if v])
-    integro = '{:02x}'.format(integro)
-
-    return integro
 
 
 def gen_collection(path, out_size):
@@ -169,15 +149,11 @@ def gen_collection(path, out_size):
 
 
 if __name__ == '__main__':
-
     all_files = gen_collection(path, out_size)
     one_file = gen_collection(path_one, out_size)
 
-
     start_time = time.time()
 
-    # hemming_length(one_file, all_files)
-    hemming_length2(one_file, all_files)
+    hemming_length(one_file, all_files)
 
-    print("Potracheno time: {:.3f} sec".format(time.time()-start_time))
-
+    print("Potracheno time: {:.3f} sec".format(time.time() - start_time))
